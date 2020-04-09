@@ -18,6 +18,7 @@ public class LocationController {
     @GetMapping("/all")
     public List<Country> getAll() {
         return this.locationRepository.findAll();
+        // test
     }
 
     @PutMapping
