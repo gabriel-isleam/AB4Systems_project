@@ -1,6 +1,7 @@
 package com.example.sports;
 
 import com.example.sports.model.Country;
+import com.example.sports.model.Region;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +20,18 @@ public class DbAccess implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Country romania = new Country("ROMANIA");
-        Country france = new Country("FRANCE");
+//        Country romania = new Country("ROMANIA");
+//        Country france = new Country("FRANCE");
 
-        this.locationRepository.deleteAll();
+            this.locationRepository.deleteAll();
+//
+//        List<Country> locations = Arrays.asList(romania, france);
+//
+//        this.locationRepository.saveAll(locations);
+            Region region = new Region("Constanta");
+            Country country = new Country("Romania", Arrays.asList(region));
 
-        List<Country> locations = Arrays.asList(romania, france);
-
-        this.locationRepository.saveAll(locations);
-
+            this.locationRepository.save(country);
 
     }
 }
