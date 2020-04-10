@@ -1,0 +1,53 @@
+PROBLEMA BACKEND ENGINEER
+
+    Pentru implementarea problemei propuse am folosit urmatoarele tipuri
+de clase pentru a salva datele:
+
+    - O clasa de tip Country ce contine numele tarii si o lista de obiecte
+    de tip Region(regiunile dintr-o tara);
+
+    - O clasa de tip Region ce contine numele regiunii si o lista de
+    obiecte de tip Location(locatii dintr-o regiune);
+
+    - O clasa de tip Location ce contine numele locatiei si o lista de
+    obiecte de tip Activity ce reprezinta activitatile ce pot fi desfasurate
+    in acea locatie;
+
+    - O clasa de tip Activity ce contine un obiect de tip Sport de reprezinta
+    sportul practicat; totodata, contine perioada in care se poate practica
+    aceasta activitate prin data de start si de sfarsit, mai exact ziua si
+    luna din an; in ultimul rand, contine si costul estimat al activitatii;
+
+    - O clasa de tip Sport ce contine numele sportului si o lista de echipamente
+    necesare pentru acel sport;
+
+    - O clasa de tip BestLocation ce contine datele ce vor fi afisate ca rezultat
+    al cautarii clientului, mai exact, locatia, sportul si costul;
+
+
+    Am implementat operatiile pentru administrator, operatii de adaugare, stergere,
+actualizare si citire a datelor din baza de date.
+    Pentru operatiile de adaugare sunt urmatoarele optiuni:
+        - adaugarea unei tari noi
+        - adaugarea unei regiuni pentru o tara (se da numele tarii)
+        - adaugarea unei locatii pentru o regiune dintr-o tara data
+            (se da numele tarii si regiunii)
+    Operatia de actualizare:
+        - actualizarea completa a unui obiect de tip Country
+        - actualizarea unei regiuni dintr-o tara
+    Operatia de stergere:
+        - stergerea unei tari prin id sau prin nume
+        - stergerea unei regiuni
+        - stergerea unei locatii
+        - stergerea tuturor datelor
+    Operatia de citire:
+        - citirea tuturor datelor
+        - citirea unei tari dupa id sau dupa nume
+        - citirea locatiilor dintr-o regiune, dintr-o tara anume
+        - citirea datelor pentru o lista de sporturi date, intr-un anumit interval
+        de timp; in cazul acesta, se afiseaza o lista de contine numele locatiei,
+        numele sportului, costul estimat; aceasta lista este ordonata crescator
+        dupa cost, pe fiecare tara;
+
+
+    Pentru salvarea datelor, am folosit MongoDB.
