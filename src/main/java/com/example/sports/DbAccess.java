@@ -1,12 +1,12 @@
 package com.example.sports;
 
-import com.example.sports.model.Country;
-import com.example.sports.model.Region;
+import com.example.sports.model.*;
+import com.example.sports.model.sports.ATV;
+import com.example.sports.model.sports.Ski;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class DbAccess implements CommandLineRunner {
@@ -20,18 +20,21 @@ public class DbAccess implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        Country romania = new Country("ROMANIA");
-//        Country france = new Country("FRANCE");
+        this.locationRepository.deleteAll();
 
-            this.locationRepository.deleteAll();
-//
-//        List<Country> locations = Arrays.asList(romania, france);
-//
-//        this.locationRepository.saveAll(locations);
-            Region region = new Region("Constanta");
-            Country country = new Country("Romania", Arrays.asList(region));
+        Sport ski = new Ski(Arrays.asList("skis", "helmet"));
+        Sport atv = new ATV(Arrays.asList("atv", "helmet", "driving licence"));
 
-            this.locationRepository.save(country);
+        Activity skiActivity = new Activity(ski, "12", "01", "3", "01", 100); //MonthDay.of(12, 1), MonthDay.of(3, 1));
+        Activity atvActivity = new Activity(atv, "01","01", "12"," 31", 200);//MonthDay.of(1, 1), MonthDay.of(12, 31));
+
+        Location location = new Location("Predeal", Arrays.asList(skiActivity, atvActivity));
+
+        Region region = new Region("Brasov", Arrays.asList(location));
+
+        Country country = new Country("Romania", Arrays.asList(region));
+
+        this.locationRepository.save(country);
 
     }
 }
