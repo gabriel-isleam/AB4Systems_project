@@ -1,8 +1,6 @@
 package com.example.sports;
 
 import com.example.sports.model.*;
-import com.example.sports.model.sports.ATV;
-import com.example.sports.model.sports.Ski;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

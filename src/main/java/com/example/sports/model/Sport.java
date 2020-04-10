@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public abstract class Sport {
+public class Sport {
 
     private String sportName;
     private List<String> equipment;
