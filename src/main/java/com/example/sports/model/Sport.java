@@ -10,7 +10,7 @@ public class Sport {
     private List<String> equipment;
 
     public Sport(@JsonProperty("sportName") String sportName,
-                 @JsonProperty("ecquipment") List<String> equipment) {
+                 @JsonProperty("equipment") List<String> equipment) {
         this.sportName = sportName;
         this.equipment = equipment;
     }

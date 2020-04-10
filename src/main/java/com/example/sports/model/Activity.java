@@ -2,26 +2,24 @@ package com.example.sports.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Activity {
 
     private Sport sport;
-    private String startDay;
-    private String startMonth;
-    private String endDay;
-    private String endMonth;
+    private Date startDate;
+    private Date endDate;
     private float cost;
 
     public Activity (Sport sport,
-                     @JsonProperty("startDay") String startDay,
-                     @JsonProperty("startMonth") String startMonth,
-                     @JsonProperty("endDay") String endDay,
-                     @JsonProperty("endMonth") String endMonth,
+                     @JsonProperty("startDate") Date startDate,
+                     @JsonProperty("endDate") Date endDate,
                      float cost) {
         this.sport = sport;
-        this.startDay = startDay;
-        this.startMonth = startMonth;
-        this.endDay = endDay;
-        this.endMonth = endMonth;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.cost = cost;
     }
 
@@ -29,20 +27,22 @@ public class Activity {
         return sport;
     }
 
-    public String getStartDay() {
-        return startDay;
+    public String getStartDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM");
+        return formatter.format(startDate);
     }
 
-    public String getStartMonth() {
-        return startMonth;
+    public String getEndDate() {
+        DateFormat formatter = new SimpleDateFormat("dd/MM");
+        return formatter.format(endDate);
     }
 
-    public String getEndDay() {
-        return endDay;
+    public Date getStartDate(int x) {
+        return startDate;
     }
 
-    public String getEndMonth() {
-        return endMonth;
+    public Date getEndDate(int x) {
+        return endDate;
     }
 
     public float getCost() {

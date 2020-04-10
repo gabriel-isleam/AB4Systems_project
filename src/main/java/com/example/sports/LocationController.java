@@ -1,12 +1,9 @@
 package com.example.sports;
 
-import com.example.sports.model.Activity;
-import com.example.sports.model.Country;
-import com.example.sports.model.Location;
-import com.example.sports.model.Region;
+import com.example.sports.model.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/locations")
@@ -129,14 +126,34 @@ public class LocationController {
     }
 
     @GetMapping("/countries")
-    public Country getCountryByName(@RequestParam(name = "name") String name) {
-        Country country = this.locationRepository.findCountryByCountryName(name);
-        return country;
+    public Country getCountryByName(@RequestParam(name = "country") String name) {
+        return this.locationRepository.findCountryByCountryName(name);
     }
 
     @GetMapping("/countries/regions/locations")
     public List<Location> getLocationsFromCountry(@RequestParam(name = "country") String countryName) {
         Country country = this.locationRepository.findCountryByCountryName(countryName);
         return country.allLocations();
+    }
+
+    @GetMapping("/countries/regions/locations/best")
+    public List<BestLocation> getBestLocations(@RequestParam(name = "sports") List<String> sports,
+                                               @RequestParam(name = "startDay") String startDay,
+                                               @RequestParam(name = "startMonth") String startMonth,
+                                               @RequestParam(name = "endDay") String endDay,
+                                               @RequestParam(name = "endMonth") String endMonth) {
+        List<Country> countries = this.locationRepository.findAll();
+        Map<Activity, String> map;
+        List<BestLocation> bestLocations = new ArrayList<>();
+        for (Country country : countries) {
+            map = country.bestLocations(sports, startDay, startMonth, endDay, endMonth);
+            for(Map.Entry<Activity,String> entry : map.entrySet()) {
+                Activity activity = entry.getKey();
+                bestLocations.add(new BestLocation(entry.getValue(), activity.getSport().getSportName(),
+                        activity.getCost()));
+            }
+        }
+
+        return bestLocations;
     }
 }

@@ -1,7 +1,6 @@
 package com.example.sports.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
